@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, ArrowRight, Droplets, ShieldCheck, Sparkles, MapPin, Phone, Mail, Menu, X, Check } from 'lucide-react';
+import { ChevronUp, ChevronDown, ArrowRight, Droplets, ShieldCheck, Sparkles, MapPin, Phone, Mail, Menu, X, Check } from 'lucide-react';
 
 // --- DATA PAKET MENU (Nasi Kotak, Coffee Break, & Prasmanan) ---
 const paketMenuData = {
@@ -94,9 +94,9 @@ export default function App() {
 
   const scrollCarousel = (direction) => {
     if (carouselRef.current) {
-      const scrollAmount = 400 + 24; 
+      const scrollAmount = 380 + 24;
       carouselRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        top: direction === 'up' ? -scrollAmount : scrollAmount,
         behavior: 'smooth'
       });
     }
@@ -302,27 +302,27 @@ export default function App() {
             </div>
             <div className="flex gap-[12px]">
               <button 
-                onClick={() => scrollCarousel('left')}
+                onClick={() => scrollCarousel('up')}
                 className="w-12 h-12 flex items-center justify-center border border-[#747878] hover:bg-[#0e0f0f] hover:text-[#ffffff] hover:border-[#0e0f0f] transition-all rounded-sm"
               >
-                <ChevronLeft size={24} />
+                <ChevronUp size={24} />
               </button>
               <button 
-                onClick={() => scrollCarousel('right')}
+                onClick={() => scrollCarousel('down')}
                 className="w-12 h-12 flex items-center justify-center border border-[#747878] hover:bg-[#0e0f0f] hover:text-[#ffffff] hover:border-[#0e0f0f] transition-all rounded-sm"
               >
-                <ChevronRight size={24} />
+                <ChevronDown size={24} />
               </button>
             </div>
           </div>
           
-          {/* Carousel Track */}
+          {/* Vertical list track */}
           <div 
             ref={carouselRef}
-            className="flex gap-[24px] px-[24px] overflow-x-auto no-scrollbar pb-[24px] snap-x snap-mandatory max-w-[1280px] mx-auto"
+            className="flex flex-col gap-[24px] py-[24px] overflow-y-auto no-scrollbar snap-y snap-mandatory max-h-[780px] max-w-[1280px] mx-auto px-[24px]"
           >
             {setMenuBanquet.map((set, index) => (
-              <div key={index} className="min-w-[320px] md:min-w-[420px] flex-shrink-0 group snap-start cursor-pointer border border-[#e4e2e2] bg-[#ffffff] p-2 rounded-sm shadow-sm hover:shadow-lg transition-all duration-300">
+              <div key={index} className="w-full group snap-start cursor-pointer border border-[#e4e2e2] bg-[#ffffff] p-2 rounded-sm shadow-sm hover:shadow-lg transition-all duration-300">
                 <div className="relative h-[250px] mb-[24px] overflow-hidden rounded-sm">
                   <img 
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
@@ -356,8 +356,6 @@ export default function App() {
                 </div>
               </div>
             ))}
-            {/* Allowance for scroll spacing */}
-            <div className="min-w-[24px] flex-shrink-0"></div>
           </div>
         </section>
 
