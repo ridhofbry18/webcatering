@@ -493,7 +493,7 @@ export default function App() {
         </div>
 
         <div className="max-w-[1280px] mx-auto mt-[64px] pt-[24px] border-t border-[#c4c7c7] text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="font-sans text-[14px] leading-[1.6] text-[#747878]">© 2024 Restaurant Kurnia. All rights reserved.</p>
+          <p className="font-sans text-[14px] leading-[1.6] text-[#747878]">© 2026 Restaurant Kurnia. All rights reserved.</p>
           <div className="flex gap-4">
              <span className="font-sans text-[12px] font-bold leading-[1.2] tracking-[0.1em] text-[#0e0f0f] bg-[#e0e0dc] px-3 py-1 rounded-sm">HALAL CERTIFIED</span>
           </div>
