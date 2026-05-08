@@ -84,6 +84,19 @@ export default function App() {
   const [activeTab, setActiveTab] = useState('prasmanan'); // Default tab sekarang Prasmanan
   const carouselRef = useRef(null);
 
+  const WA_NUMBER = '6285186880510';
+  const categoryLabelMap = {
+    prasmanan: 'Paket Prasmanan',
+    nasiKotak: 'Nasi Kotak & Mealbox',
+    coffeeBreak: 'Coffee Break',
+  };
+
+  const getWhatsAppLink = (message) => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
+
+  const getPaketMenuMessage = (item, categoryLabel) => `Halo Restaurant Kurnia,\n\nSaya ingin memesan:\n- Kategori: ${categoryLabel}\n- Menu: ${item.name}\n- Harga: Rp ${item.price}\n- Jumlah: ...\n- Tanggal acara: ...\n\nMohon konfirmasi ketersediaan, total harga, dan cara pembayaran.\nTerima kasih.`;
+
+  const getSetMenuMessage = (set) => `Halo Restaurant Kurnia,\n\nSaya ingin memesan Set Menu Banquet:\n- Seri: ${set.series}\n- Harga: Rp ${set.price}\n- Paket: ${set.badge}\n- Jumlah meja / porsi: ...\n- Tanggal acara: ...\n\nMohon detail paket dan ketersediaan.\nTerima kasih.`;
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -105,12 +118,10 @@ export default function App() {
   return (
     <div className="font-sans text-[#1b1c1c] selection:bg-[#c8c6c5] min-h-screen">
       <style dangerouslySetInnerHTML={{__html: `
-        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Noto+Serif:wght@500;600&display=swap');
         .font-serif { font-family: 'Noto Serif', serif; }
         .font-sans { font-family: 'Manrope', sans-serif; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        body { background-color: #fbf9f8; }
       `}} />
 
       {/* Top Navigation Bar */}
@@ -278,6 +289,14 @@ export default function App() {
                       <Check size={18} className="text-[#7D8C7E] flex-shrink-0 mt-1" />
                       <p className="font-sans text-[16px] leading-[1.6] text-[#5e5f5c]">{item.desc}</p>
                     </div>
+                    <a
+                      href={getWhatsAppLink(getPaketMenuMessage(item, categoryLabelMap[activeTab]))}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-6 inline-flex items-center justify-center rounded-sm border border-[#0e0f0f] bg-[#0e0f0f] px-[24px] py-[14px] text-[14px] font-semibold uppercase text-white transition-all hover:bg-[#272727]"
+                    >
+                      Pesan via WhatsApp
+                    </a>
                   </div>
                 </div>
               ))}
@@ -350,7 +369,12 @@ export default function App() {
                     ))}
                   </div>
 
-                  <a href="https://wa.me/6285186880510" className="font-sans text-[14px] font-semibold leading-none tracking-[0.05em] uppercase text-[#0e0f0f] inline-flex items-center gap-[8px] group-hover:text-[#5e5f5c] transition-colors">
+                  <a
+                    href={getWhatsAppLink(getSetMenuMessage(set))}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-sans text-[14px] font-semibold leading-none tracking-[0.05em] uppercase text-[#0e0f0f] inline-flex items-center gap-[8px] group-hover:text-[#5e5f5c] transition-colors"
+                  >
                     Pesan Paket Ini <ArrowRight size={18} />
                   </a>
                 </div>
